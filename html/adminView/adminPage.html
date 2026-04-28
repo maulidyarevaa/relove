@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Relove.id</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/admin/adminPage.css">
+</head>
+<body data-page="dashboard">
+  <main class="admin-shell">
+    <nav class="admin-navbar">
+      <a class="nav-brand" href="adminPage.html">Relove.id</a>
+      <div class="nav-links">
+        <a class="active" href="adminPage.html">Dashboard</a>
+        <a href="barang-tersedia.html">Barang Tersedia</a>
+        <a href="kategori-aktif.html">Kategori Aktif</a>
+        <a href="barang-terjual.html">Barang Terjual</a>
+        <a class="logout-link" href="../login.html">Logout</a>
+      </div>
+    </nav>
+
+    <header class="page-header">
+      <div>
+        <h1>Admin Dashboard</h1>
+        <div class="identity-row">
+        </div>
+      </div>
+    </header>
+
+    <section class="summary-grid" id="summaryGrid" aria-label="Ringkasan admin">
+      <article class="summary-card" data-href="barang-terjual.html">
+        <p>Total barang terjual</p>
+        <strong id="soldItemsCount">0</strong>
+        <small>Klik untuk melihat rincian barang yang sudah terjual</small>
+      </article>
+
+      <article class="summary-card summary-card-accent" data-href="barang-tersedia.html">
+        <div class="summary-top">
+          <div>
+            <p>Barang tersedia</p>
+            <strong id="availableItemsCount">0</strong>
+          </div>
+          <button class="add-trigger" type="button" id="openAddModal" aria-label="Tambah barang">+</button>
+        </div>
+        <small>Klik kartu untuk melihat rincian stok yang masih tersedia</small>
+      </article>
+
+      <article class="summary-card" data-href="kategori-aktif.html">
+        <p>Kategori aktif</p>
+        <strong id="activeCategoryCount">0</strong>
+        <small>Klik untuk melihat ringkasan kategori produk yang sedang digunakan</small>
+      </article>
+
+      <article class="summary-card profit-card" data-href="barang-terjual.html">
+        <p>Grafik keuntungan</p>
+        <strong id="profitValue">Rp0,00</strong>
+        <div class="profit-chart" aria-hidden="true">
+          <span class="chart-bar" id="profitBar1"></span>
+          <span class="chart-bar" id="profitBar2"></span>
+          <span class="chart-bar" id="profitBar3"></span>
+          <span class="chart-bar" id="profitBar4"></span>
+        </div>
+        <small>Klik untuk melihat rincian barang yang sudah dijual</small>
+      </article>
+    </section>
+
+    <section class="panel dashboard-panel">
+      <div class="section-head">
+        <div>
+          <p class="page-kicker">Ringkasan Cepat</p>
+          <h2>Produk terbaru</h2>
+        </div>
+        <a class="text-link" href="barang-tersedia.html">Lihat stok tersedia</a>
+      </div>
+      <div class="product-grid" id="dashboardProductList">
+        <article class="empty-state">
+          <h3>Belum ada barang</h3>
+          <p>Tekan tanda + pada kartu barang tersedia untuk menambahkan produk pertama.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel order-panel">
+      <div class="section-head">
+        <div>
+          <p class="page-kicker">Pesanan Masuk</p>
+          <h2>Rincian pesanan customer</h2>
+        </div>
+        <span class="detail-counter" id="orderCount">0 pesanan</span>
+      </div>
+      <div class="order-list" id="orderList">
+        <article class="empty-state">
+          <h3>Belum ada pesanan</h3>
+          <p>Pesanan customer akan muncul di sini setelah ada pembelian.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel visual-panel">
+      <div class="section-head">
+        <div>
+          <p class="page-kicker">Visual Tamu</p>
+          <h2>Atur foto untuk halaman tamu</h2>
+        </div>
+        <span class="detail-counter">Profile, galeri, dan kontak</span>
+      </div>
+
+      <form id="visualForm" class="visual-form">
+        <div class="visual-grid">
+          <div class="visual-field">
+            <label for="storeProfileImage">Foto profile store</label>
+            <input type="file" id="storeProfileImage" accept="image/*">
+            <div class="preview-box preview-box-compact">
+              <img id="storeProfilePreview" src="https://placehold.co/600x420/f5e7db/7f5c50?text=Profile+Store" alt="Preview foto profile store">
+            </div>
+          </div>
+
+          <div class="visual-field">
+            <label for="galleryImageOne">Foto galeri 1</label>
+            <input type="file" id="galleryImageOne" accept="image/*">
+            <div class="preview-box preview-box-compact">
+              <img id="galleryPreviewOne" src="https://placehold.co/600x420/f5e7db/7f5c50?text=Galeri+1" alt="Preview foto galeri pertama">
+            </div>
+          </div>
+
+          <div class="visual-field">
+            <label for="galleryImageTwo">Foto galeri 2</label>
+            <input type="file" id="galleryImageTwo" accept="image/*">
+            <div class="preview-box preview-box-compact">
+              <img id="galleryPreviewTwo" src="https://placehold.co/600x420/f5e7db/7f5c50?text=Galeri+2" alt="Preview foto galeri kedua">
+            </div>
+          </div>
+
+          <div class="visual-field">
+            <label for="galleryImageThree">Foto galeri 3</label>
+            <input type="file" id="galleryImageThree" accept="image/*">
+            <div class="preview-box preview-box-compact">
+              <img id="galleryPreviewThree" src="https://placehold.co/600x420/f5e7db/7f5c50?text=Galeri+3" alt="Preview foto galeri ketiga">
+            </div>
+          </div>
+
+          <div class="visual-field">
+            <label for="galleryImageFour">Foto galeri 4</label>
+            <input type="file" id="galleryImageFour" accept="image/*">
+            <div class="preview-box preview-box-compact">
+              <img id="galleryPreviewFour" src="https://placehold.co/600x420/f5e7db/7f5c50?text=Galeri+4" alt="Preview foto galeri keempat">
+            </div>
+          </div>
+
+          <div class="visual-field">
+            <label for="contactBackgroundImage">Background halaman kontak</label>
+            <input type="file" id="contactBackgroundImage" accept="image/*">
+            <div class="preview-box preview-box-compact">
+              <img id="contactBackgroundPreview" src="https://placehold.co/600x420/f5e7db/7f5c50?text=Background+Kontak" alt="Preview background halaman kontak">
+            </div>
+          </div>
+        </div>
+
+        <p class="form-message" id="visualMessage" aria-live="polite"></p>
+
+        <div class="form-actions">
+          <button class="primary-button" type="submit">Simpan Visual</button>
+          <button class="secondary-button" type="button" id="resetVisuals">Reset Visual</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <footer class="site-credit-bar">Maulidya Revaa | NIM 2431417039</footer>
+
+  <div class="modal-backdrop" id="productModal" aria-hidden="true">
+    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+      <button class="modal-close" type="button" id="closeProductModal" aria-label="Tutup pop up">&times;</button>
+      <p class="page-kicker" id="modalKicker">Tambah Barang</p>
+      <h2 id="productModalTitle">Input barang preloved</h2>
+
+      <form id="productForm" class="product-form">
+        <input type="hidden" id="productId">
+
+        <label for="productName">Nama barang</label>
+        <input type="text" id="productName" placeholder="Contoh: Cardigan Rajut Vintage">
+
+        <label for="productCategory">Kategori</label>
+        <select id="productCategory">
+          <option value="">Pilih kategori</option>
+          <option value="Baju">Baju</option>
+          <option value="Sepatu">Sepatu</option>
+          <option value="Tas">Tas</option>
+          <option value="Aksesoris">Aksesoris</option>
+          <option value="Celana">Celana</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+
+        <label for="productPrice">Harga</label>
+        <input type="number" id="productPrice" placeholder="Contoh: 175000" min="0">
+
+        <label for="productCondition">Kondisi</label>
+        <input type="text" id="productCondition" placeholder="Contoh: Like New / 90%">
+
+        <label for="productDescription">Deskripsi personal</label>
+        <textarea id="productDescription" rows="4" placeholder="Ceritakan kondisi, ukuran, warna, atau detail penting lainnya"></textarea>
+
+        <label for="productImage">Upload gambar</label>
+        <input type="file" id="productImage" accept="image/*">
+
+        <div class="preview-box">
+          <p>Preview gambar</p>
+          <img id="imagePreview" src="https://placehold.co/600x420/f5e7db/7f5c50?text=Preview+Gambar" alt="Preview gambar barang">
+        </div>
+
+        <p class="form-message" id="formMessage" aria-live="polite"></p>
+
+        <div class="form-actions">
+          <button class="primary-button" type="submit">Simpan</button>
+          <button class="secondary-button" type="reset" id="resetButton">Reset</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <script src="../../script/admin/script.js"></script>
+</body>
+</html>

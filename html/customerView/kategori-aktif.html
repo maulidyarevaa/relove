@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kategori Aktif - Relove.id</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/admin/adminPage.css">
+</head>
+<body data-page="categories">
+  <main class="admin-shell">
+    <nav class="admin-navbar">
+      <a class="nav-brand" href="adminPage.html">Relove.id</a>
+      <div class="nav-links">
+        <a href="adminPage.html">Dashboard</a>
+        <a href="barang-tersedia.html">Barang Tersedia</a>
+        <a class="active" href="kategori-aktif.html">Kategori Aktif</a>
+        <a href="barang-terjual.html">Barang Terjual</a>
+        <a class="logout-link" href="../login.html">Logout</a>
+      </div>
+    </nav>
+
+    <header class="detail-page-header">
+      <div>
+        <p class="page-kicker">Ringkasan Kategori</p>
+        <h1>Kategori Aktif</h1>
+        <p class="meta-line">Daftar kategori yang sedang digunakan oleh produk di dashboard admin</p>
+      </div>
+      <span class="detail-counter" id="categoryCount">0 kategori</span>
+    </header>
+
+    <section class="panel">
+      <div class="category-grid" id="categoryList">
+        <article class="empty-state">
+          <h3>Belum ada kategori</h3>
+          <p>Kategori akan tampil di halaman ini setelah admin menambahkan produk.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-credit-bar">Maulidya Revaa | NIM 2431417039</footer>
+
+  <script src="../../script/admin/script.js"></script>
+</body>
+</html>

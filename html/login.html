@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Preloved Personal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/shared/login.css">
+</head>
+<body>
+  <nav class="login-navbar">
+    <div class="navbar-container">
+      <button class="navbar-back" id="backButton" aria-label="Kembali ke halaman utama">
+        <span class="back-arrow">&larr;</span>
+        <span class="back-text">Kembali</span>
+      </button>
+      <h1 class="navbar-brand">Relove.id</h1>
+      <div class="navbar-spacer"></div>
+    </div>
+  </nav>
+
+  <main class="login-page">
+    <section class="form-panel solo-panel">
+      <div class="form-shell compact-shell">
+        <h1 class="brand-title">Relove.id</h1>
+
+        <div class="entry-options">
+          <button class="entry-card entry-customer" type="button" id="guestButton">
+            <span class="entry-icon">&#128722;</span>
+            <span class="entry-title">Masuk sebagai pembeli</span>
+          </button>
+
+          <button class="entry-card entry-admin" type="button" id="openAdminModal">
+            <span class="entry-icon">&#128737;</span>
+            <span class="entry-title">Masuk sebagai admin</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-credit-bar">Maulidya Revaa | NIM 2431417039</footer>
+
+  <div class="modal-backdrop" id="adminModal" aria-hidden="true">
+    <section class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+      <button class="modal-close" type="button" id="closeAdminModal" aria-label="Tutup pop up">&times;</button>
+      <h2 id="adminModalTitle">Login admin</h2>
+
+      <form class="login-form" id="adminLoginForm">
+        <label for="adminEmail">Email admin</label>
+        <input type="email" id="adminEmail" name="adminEmail" placeholder="admin@preloved.com" required>
+
+        <label for="adminPassword">Kata sandi</label>
+        <input type="password" id="adminPassword" name="adminPassword" placeholder="Masukkan kata sandi" required>
+
+        <p class="login-hint">Gunakan email `admin@preloved.com` dan kata sandi `preloved123`.</p>
+        <p class="login-message" id="loginMessage" aria-live="polite"></p>
+
+        <button type="submit">Login Admin</button>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    const backButton = document.getElementById("backButton");
+    const guestButton = document.getElementById("guestButton");
+    const openAdminModal = document.getElementById("openAdminModal");
+    const closeAdminModal = document.getElementById("closeAdminModal");
+    const adminModal = document.getElementById("adminModal");
+    const adminLoginForm = document.getElementById("adminLoginForm");
+    const loginMessage = document.getElementById("loginMessage");
+
+    const adminCredentials = {
+      email: "admin@preloved.com",
+      password: "preloved123"
+    };
+
+    backButton.addEventListener("click", function () {
+      window.location.href = "index.html";
+    });
+
+    function showModal() {
+      adminModal.classList.add("is-open");
+      adminModal.setAttribute("aria-hidden", "false");
+      loginMessage.textContent = "";
+    }
+
+    function hideModal() {
+      adminModal.classList.remove("is-open");
+      adminModal.setAttribute("aria-hidden", "true");
+      adminLoginForm.reset();
+      loginMessage.textContent = "";
+    }
+
+    guestButton.addEventListener("click", function () {
+      window.location.href = "customerView/dashboard.html";
+    });
+
+    openAdminModal.addEventListener("click", showModal);
+    closeAdminModal.addEventListener("click", hideModal);
+
+    adminModal.addEventListener("click", function (event) {
+      if (event.target === adminModal) {
+        hideModal();
+      }
+    });
+
+    adminLoginForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const email = document.getElementById("adminEmail").value.trim();
+      const password = document.getElementById("adminPassword").value.trim();
+
+      if (email === adminCredentials.email && password === adminCredentials.password) {
+        loginMessage.textContent = "Login berhasil. Mengarahkan ke halaman admin...";
+        loginMessage.classList.remove("is-error");
+        loginMessage.classList.add("is-success");
+
+        setTimeout(function () {
+          window.location.href = "adminView/adminPage.html";
+        }, 800);
+        return;
+      }
+
+      loginMessage.textContent = "Email atau kata sandi admin tidak sesuai.";
+      loginMessage.classList.remove("is-success");
+      loginMessage.classList.add("is-error");
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && adminModal.classList.contains("is-open")) {
+        hideModal();
+      }
+    });
+  </script>
+</body>
+</html>

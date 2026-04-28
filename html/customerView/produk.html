@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produk - Relove.id</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/customer/dashboard.css">
+</head>
+<body>
+  <main class="guest-shell">
+    <header class="topbar">
+      <a class="brand" href="dashboard.html">
+        <span class="brand-mark" id="brandMark">PL</span>
+        <span class="brand-copy">
+          <strong>Relove.id</strong>
+          <small>Personal Preloved Store</small>
+        </span>
+      </a>
+
+      <nav class="topnav" aria-label="Navigasi utama">
+        <a href="dashboard.html">Beranda</a>
+        <a href="tentangKami.html">Tentang</a>
+        <a href="produk.html">Produk</a>
+        <a href="galeri.html">Galeri</a>
+        <a href="kontak.html">Kontak</a>
+        <a class="topnav-utility" href="../login.html">Logout</a>
+      </nav>
+    </header>
+
+    <div class="guest-content">
+      <section class="hero-section product-hero" id="productHero">
+        <div class="hero-copy">
+          <p class="hero-kicker">Produk Preloved</p>
+          <h1>Katalog lengkap barang yang masih tersedia untuk dibeli.</h1>
+          <p class="hero-text">
+            Halaman ini khusus menampilkan produk yang siap dibeli. Kamu bisa melihat kategori,
+            kondisi, harga, lalu membuka detail produk sebelum melakukan pembelian.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-link" href="#catalog">Lihat Semua Produk</a>
+            <a class="secondary-link" href="tentangKami.html">Kembali ke Tentang Store</a>
+          </div>
+        </div>
+
+        <div class="hero-stats">
+          <article class="stat-card">
+            <p>Produk tersedia</p>
+            <strong id="availableCount">0</strong>
+          </article>
+          <article class="stat-card">
+            <p>Kategori aktif</p>
+            <strong id="categoryCount">0</strong>
+          </article>
+          <article class="stat-card">
+            <p>Harga mulai</p>
+            <strong id="startingPrice">Rp0,00</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="catalog-section" id="catalog">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Produk</p>
+            <h2>Katalog yang masih tersedia per kategori</h2>
+          </div>
+        </div>
+
+        <div id="catalogList">
+          <article class="empty-state">
+            <h3>Belum ada barang tersedia</h3>
+            <p>Silakan kembali lagi setelah admin menambahkan produk baru.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="modal-backdrop" id="buyerModal" aria-hidden="true">
+    <section class="buyer-modal" role="dialog" aria-modal="true" aria-labelledby="buyerModalTitle">
+      <button class="modal-close" type="button" id="closeBuyerModal" aria-label="Tutup pop up">&times;</button>
+      <div class="modal-media">
+        <img id="buyerModalImage" src="" alt="Preview produk">
+      </div>
+      <div class="modal-content">
+        <p class="section-kicker">Detail Produk</p>
+        <h2 id="buyerModalTitle">Nama Produk</h2>
+        <p class="product-price" id="buyerModalPrice">Rp0,00</p>
+        <div class="modal-badges">
+          <span class="badge" id="buyerModalCategory">Kategori</span>
+          <span class="badge" id="buyerModalCondition">Kondisi</span>
+        </div>
+        <p class="modal-description" id="buyerModalDescription"></p>
+        <div class="checkout-panel">
+          <p class="checkout-title">Informasi Pembelian</p>
+          <label class="checkout-label" for="paymentMethod">Metode pembayaran</label>
+          <select id="paymentMethod" class="checkout-input">
+            <option value="">Pilih pembayaran</option>
+            <option value="Transfer Bank">Transfer Bank</option>
+            <option value="E-Wallet">E-Wallet</option>
+            <option value="COD">COD</option>
+          </select>
+
+          <label class="checkout-label" for="buyerName">Nama pembeli</label>
+          <input id="buyerName" class="checkout-input" type="text" placeholder="Masukkan nama lengkap">
+
+          <label class="checkout-label" for="buyerAddress">Alamat pengiriman</label>
+          <textarea id="buyerAddress" class="checkout-input checkout-textarea" rows="3" placeholder="Masukkan alamat pengiriman lengkap"></textarea>
+
+          <div class="checkout-summary">
+            <div class="summary-row">
+              <span>Harga produk</span>
+              <strong id="checkoutProductPrice">Rp0,00</strong>
+            </div>
+            <div class="summary-row">
+              <span>Biaya kirim</span>
+              <strong id="checkoutShipping">Rp15.000,00</strong>
+            </div>
+            <div class="summary-row summary-row--total">
+              <span>Total pembayaran</span>
+              <strong id="checkoutTotal">Rp0,00</strong>
+            </div>
+          </div>
+        </div>
+        <p class="modal-message" id="buyerModalMessage" aria-live="polite"></p>
+        <div class="checkout-actions">
+          <button class="cancel-button" type="button" id="cancelBuyButton">Cancel</button>
+          <button class="buy-button" type="button" id="confirmBuyButton">Buy</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="thankyou-backdrop" id="thankYouModal" aria-hidden="true">
+    <section class="thankyou-modal" role="dialog" aria-modal="true" aria-labelledby="thankYouTitle">
+      <p class="section-kicker">Pembelian Berhasil</p>
+      <h2 id="thankYouTitle">Thank you</h2>
+      <p>Pesanan kamu berhasil diproses. Produk akan dipindahkan dari katalog tersedia.</p>
+    </section>
+  </div>
+
+  <footer class="site-credit-bar">Maulidya Revaa | NIM 2431417039</footer>
+
+  <script src="../../script/customer/guest-page.js"></script>
+  <script src="../../script/customer/dashboard.js"></script>
+</body>
+</html>
